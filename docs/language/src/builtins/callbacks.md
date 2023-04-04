@@ -2,9 +2,8 @@
 
 ## `init()`
 
-Every element implicitly declares an `init` callback. You can assign a code block to it that will be invoked when the
-element is instantiated and after all properties are initialized with the value of their final binding. The order of
-invocation is from inside to outside. The following example will print "first", then "second", and then "third":
+Every element implicitly declares an `init` callback. You can assign a code block to the callback
+that is invoked when the element is instantiated and after all properties are initialized with the value of their final binding. The invocation order is from inside to outside. The following example illustrates this by printing "first", "second", and then "third":
 
 ```slint,no-preview
 component MyButton inherits Rectangle {
@@ -29,8 +28,10 @@ export component MyWindow inherits Window {
 }
 ```
 
-Don't use this callback to initialize properties, because this violates the declarative principle.
-Avoid using this callback, unless you need it, for example, in order to notify some native code:
+To initialize properties, you should use bindings instead of this callback. Avoid using this
+callback for initialization because it violates the declarative principle.
+
+One use case where you might need this callback is, for example, to notify some native code:
 
 ```slint,no-preview
 global SystemService  {
